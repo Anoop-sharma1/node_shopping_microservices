@@ -123,8 +123,10 @@ class CustomerService {
     async ManageCart(customerId, product, qty, isRemove) {
         try {
             const cartResult = await this.repository.AddCartItem(customerId, product, qty, isRemove);
+
             return FormateData(cartResult);
         } catch (err) {
+
             throw new APIError('Data Not found', err)
         }
     }
@@ -141,7 +143,6 @@ class CustomerService {
     async SubscribeEvents(payload) {
 
         const { event, data } = payload;
-
         const { userId, product, order, qty } = data;
 
         switch (event) {
